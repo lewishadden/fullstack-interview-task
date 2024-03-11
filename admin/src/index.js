@@ -28,15 +28,16 @@ app.get("/investments/:id", async (req, res) => {
 
 app.get("/investments/report/:userId", async (req, res) => {
   const { userId } = req.params;
-  const resp = await fetch(`${config.investmentsServiceUrl}/investments`);
-  const investments = await resp.json();
-
-  const userInvestments = getUserInvestments(userId, investments);
-  const holdingList = await getHoldingList(userInvestments);
-  const csvReport = generateCSVReport(holdingList);
-
   try {
-    const resp = await fetch(
+    const investments = await fetch(
+      `${config.investmentsServiceUrl}/investments`
+    ).then((resp) => resp.json());
+
+    const userInvestments = getUserInvestments(userId, investments);
+    const holdingList = await getHoldingList(userInvestments);
+    const csvReport = generateCSVReport(holdingList);
+
+    const { status: exportStatus } = await fetch(
       `${config.investmentsServiceUrl}/investments/export`,
       {
         method: "POST",
@@ -44,10 +45,11 @@ app.get("/investments/report/:userId", async (req, res) => {
         body: JSON.stringify({ csv: csvReport }),
       }
     );
-    if (resp.status !== 204)
+    if (exportStatus !== 204)
       throw new Error(
-        `Error exporting CSV report. Expected status code: 204 but recieved ${resp.status}`
+        `Error exporting CSV report. Expected status code: 204 but recieved ${exportStatus}`
       );
+
     res.set("Content-Type", "text/csv").send(csvReport);
   } catch (e) {
     console.error(inspect(e, false, null, true));
