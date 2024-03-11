@@ -58,6 +58,5 @@ export const generateCSVReport = (holdingList) => {
   );
   const csvReport = [csvHeaders, ...csvRows].join("\n");
 
-  console.log(csvReport);
   return csvReport;
 };

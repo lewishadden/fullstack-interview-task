@@ -35,7 +35,24 @@ app.get("/investments/report/:userId", async (req, res) => {
   const holdingList = await getHoldingList(userInvestments);
   const csvReport = generateCSVReport(holdingList);
 
-  res.send(csvReport);
+  try {
+    const resp = await fetch(
+      `${config.investmentsServiceUrl}/investments/export`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ csv: csvReport }),
+      }
+    );
+    if (resp.status !== 204)
+      throw new Error(
+        `Error exporting CSV report. Expected status code: 204 but recieved ${resp.status}`
+      );
+    res.send(csvReport);
+  } catch (e) {
+    console.error(inspect(e, false, null, true));
+    res.sendStatus(500);
+  }
 });
 
 app.listen(config.port, (err) => {
