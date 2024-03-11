@@ -49,3 +49,15 @@ export const getHoldingList = async (userInvestments) => {
 
   return holdingList;
 };
+
+export const generateCSVReport = (holdingList) => {
+  const csvHeaders = "|User|First Name|Last Name|Date|Holding|Value|";
+  const csvRows = holdingList.map(
+    ({ user, firstName, lastName, date, account: holding, value }) =>
+      `|${user}|${firstName}|${lastName}|${date}|${holding}|${value}|`
+  );
+  const csvReport = [csvHeaders, ...csvRows].join("\n");
+
+  console.log(csvReport);
+  return csvReport;
+};
