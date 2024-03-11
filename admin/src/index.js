@@ -20,6 +20,15 @@ app.get("/investments/:id", async (req, res) => {
   }
 });
 
+app.get("/investments/report/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const resp = await fetch(`${config.investmentsServiceUrl}/investments`);
+  const investments = await resp.json();
+
+  console.log(investments);
+  res.send(investments);
+});
+
 app.listen(config.port, (err) => {
   if (err) {
     console.error("Error occurred starting the server", err);
