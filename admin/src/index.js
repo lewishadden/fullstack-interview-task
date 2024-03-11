@@ -48,7 +48,7 @@ app.get("/investments/report/:userId", async (req, res) => {
       throw new Error(
         `Error exporting CSV report. Expected status code: 204 but recieved ${resp.status}`
       );
-    res.send(csvReport);
+    res.set("Content-Type", "text/csv").send(csvReport);
   } catch (e) {
     console.error(inspect(e, false, null, true));
     res.sendStatus(500);
