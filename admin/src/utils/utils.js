@@ -42,7 +42,10 @@ export const getHoldingList = async (userInvestments) => {
   );
 
   const accountIdsMap = await getHoldingAccountsMapping(accountIds);
-  console.log(accountIdsMap);
+  holdingList = holdingList.map((holding) => ({
+    ...holding,
+    account: accountIdsMap[holding.account].name,
+  }));
 
   return holdingList;
 };

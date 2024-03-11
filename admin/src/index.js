@@ -27,7 +27,7 @@ app.get("/investments/report/:userId", async (req, res) => {
   const resp = await fetch(`${config.investmentsServiceUrl}/investments`);
   const investments = await resp.json();
   const userInvestments = getUserInvestments(userId, investments);
-  const holdingList = getHoldingList(userInvestments);
+  const holdingList = await getHoldingList(userInvestments);
 
   res.send(holdingList);
 });
