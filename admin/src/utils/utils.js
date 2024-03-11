@@ -1,3 +1,17 @@
+import config from "config";
+
+const getHoldingAccountsMapping = async (accountIds) => {
+  const accountIdsMap = {};
+  for (let accountId of accountIds) {
+    const resp = await fetch(
+      `${config.financialCompaniesServiceUrl}/companies/${accountId}`
+    );
+    const company = await resp.json();
+    accountIdsMap[accountId] = company;
+  }
+  return accountIdsMap;
+};
+
 export const getUserInvestments = (userId, investments) => {
   const userInvestments = investments.filter(
     (investment) => investment.userId === userId
@@ -5,7 +19,7 @@ export const getUserInvestments = (userId, investments) => {
   return userInvestments;
 };
 
-export const getHoldingList = (userInvestments) => {
+export const getHoldingList = async (userInvestments) => {
   let holdingList = [];
   const accountIds = new Set();
 
@@ -26,6 +40,9 @@ export const getHoldingList = (userInvestments) => {
       });
     }
   );
+
+  const accountIdsMap = await getHoldingAccountsMapping(accountIds);
+  console.log(accountIdsMap);
 
   return holdingList;
 };

@@ -29,7 +29,6 @@ app.get("/investments/report/:userId", async (req, res) => {
   const userInvestments = getUserInvestments(userId, investments);
   const holdingList = getHoldingList(userInvestments);
 
-  console.log(holdingList);
   res.send(holdingList);
 });
 
