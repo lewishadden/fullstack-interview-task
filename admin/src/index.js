@@ -2,7 +2,7 @@ import express from "express";
 import config from "config";
 import { inspect } from "util";
 
-import { getUserInvestments } from "./utils/utils.js";
+import { getUserInvestments, getHoldingList } from "./utils/utils.js";
 
 const app = express();
 
@@ -27,9 +27,10 @@ app.get("/investments/report/:userId", async (req, res) => {
   const resp = await fetch(`${config.investmentsServiceUrl}/investments`);
   const investments = await resp.json();
   const userInvestments = getUserInvestments(userId, investments);
+  const holdingList = getHoldingList(userInvestments);
 
-  console.log(userInvestments);
-  res.send(userInvestments);
+  console.log(holdingList);
+  res.send(holdingList);
 });
 
 app.listen(config.port, (err) => {
