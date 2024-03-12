@@ -1,0 +1,58 @@
+[
+  {
+    "user": "2",
+    "firstName": "Sheila",
+    "lastName": "Aussie",
+    "date": "2020-01-01",
+    "account": "The Big Investment Company",
+    "value": 10000
+  },
+  {
+    "user": "2",
+    "firstName": "Sheila",
+    "lastName": "Aussie",
+    "date": "2020-01-01",
+    "account": "The Small Investment Company",
+    "value": 10000
+  },
+  {
+    "user": "2",
+    "firstName": "Sheila",
+    "lastName": "Aussie",
+    "date": "2020-02-01",
+    "account": "The Big Investment Company",
+    "value": 11000
+  },
+  {
+    "user": "2",
+    "firstName": "Sheila",
+    "lastName": "Aussie",
+    "date": "2020-02-01",
+    "account": "The Small Investment Company",
+    "value": 11000
+  },
+  {
+    "user": "2",
+    "firstName": "Sheila",
+    "lastName": "Aussie",
+    "date": "2020-03-01",
+    "account": "The Big Investment Company",
+    "value": 10750
+  },
+  {
+    "user": "2",
+    "firstName": "Sheila",
+    "lastName": "Aussie",
+    "date": "2020-03-01",
+    "account": "The Small Investment Company",
+    "value": 6450
+  },
+  {
+    "user": "2",
+    "firstName": "Sheila",
+    "lastName": "Aussie",
+    "date": "2020-03-01",
+    "account": "Capital Investments",
+    "value": 4300
+  }
+]
