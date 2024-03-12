@@ -1,6 +1,6 @@
 import config from "config";
 
-const getHoldingAccountsMapping = async (accountIds) => {
+export const getHoldingAccountsMapping = async (accountIds) => {
   const accountIdsMap = {};
   for (let accountId of accountIds) {
     const resp = await fetch(
