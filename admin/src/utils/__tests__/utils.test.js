@@ -7,6 +7,7 @@ import {
 
 const investmentsData = require("./mockData/investments.json");
 const companiesData = require("./mockData/companies.json");
+const investmentsDataSheila = require("./mockData/investments_sheila.json");
 
 global.fetch = jest.fn((url) => {
   const companyId = url.split("/").pop();
@@ -47,6 +48,18 @@ describe("utils", () => {
           "http://localhost:8082/companies/2"
         );
       });
+    });
+  });
+
+  describe("getUserInvestments", () => {
+    it("should return the correct investment data", () => {
+      const userInvestments = getUserInvestments("2", investmentsData);
+      expect(userInvestments).toEqual(investmentsDataSheila);
+    });
+
+    it("should return no data if user is not found", () => {
+      const userInvestments = getUserInvestments("5", investmentsData);
+      expect(userInvestments).toEqual([]);
     });
   });
 });
