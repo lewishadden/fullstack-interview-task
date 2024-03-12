@@ -1,0 +1,60 @@
+[
+    {
+        "date": "2020-01-01",
+        "firstName": "Sheila",
+        "holdings": [
+            {
+                "id": "1",
+                "investmentPercentage": 0.5
+            },
+            {
+                "id": "2",
+                "investmentPercentage": 0.5
+            }
+        ],
+        "id": "2",
+        "investmentTotal": 20000,
+        "lastName": "Aussie",
+        "userId": "2"
+    },
+    {
+        "date": "2020-02-01",
+        "firstName": "Sheila",
+        "holdings": [
+            {
+                "id": "1",
+                "investmentPercentage": 0.5
+            },
+            {
+                "id": "2",
+                "investmentPercentage": 0.5
+            }
+        ],
+        "id": "4",
+        "investmentTotal": 22000,
+        "lastName": "Aussie",
+        "userId": "2"
+    },
+    {
+        "date": "2020-03-01",
+        "firstName": "Sheila",
+        "holdings": [
+            {
+                "id": "1",
+                "investmentPercentage": 0.5
+            },
+            {
+                "id": "2",
+                "investmentPercentage": 0.3
+            },
+            {
+                "id": "3",
+                "investmentPercentage": 0.2
+            }
+        ],
+        "id": "6",
+        "investmentTotal": 21500,
+        "lastName": "Aussie",
+        "userId": "2"
+    }
+]
