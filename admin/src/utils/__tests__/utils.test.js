@@ -1,3 +1,6 @@
+import { readFileSync } from "fs";
+import path from "path";
+
 import {
   getUserInvestments,
   getHoldingList,
@@ -9,6 +12,9 @@ const investmentsData = require("./mockData/investments.json");
 const companiesData = require("./mockData/companies.json");
 const investmentsDataSheila = require("./mockData/investments_sheila.json");
 const holdingsDataSheila = require("./mockData/holdings_sheila.json");
+const csvReportSheila = readFileSync(
+  path.join(__dirname, "/mockData/report_sheila.csv")
+).toString();
 
 global.fetch = jest.fn((url) => {
   const companyId = url.split("/").pop();
@@ -73,6 +79,20 @@ describe("utils", () => {
     it("should return no data if investment data is empty", async () => {
       const holdingList = await getHoldingList([]);
       expect(holdingList).toEqual([]);
+    });
+  });
+
+  describe("generateCSVReport", () => {
+    it("should return the correct CSV string", () => {
+      const csvString = generateCSVReport(holdingsDataSheila);
+      expect(csvString).toEqual(csvReportSheila);
+    });
+
+    it("should return no CSV records if holdings data is empty", () => {
+      const csvString = generateCSVReport([]);
+      expect(csvString).toEqual(
+        "|User|First Name|Last Name|Date|Holding|Value|"
+      );
     });
   });
 });
